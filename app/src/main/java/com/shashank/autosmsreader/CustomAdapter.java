@@ -1,6 +1,7 @@
 package com.shashank.autosmsreader;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,7 +26,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(context).inflate(R.layout.list_item,parent,false);
-
         return new ViewHolder(view);
     }
 
@@ -54,6 +54,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             senderNameTextView=itemView.findViewById(R.id.senderNameTextView);
             messageBodyTextView=itemView.findViewById(R.id.messageBodyTextView);
             dateTextView=itemView.findViewById(R.id.dateTextView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(context,ReadMessage.class);
+                    intent.putExtra("senderName",messageList.get(getAdapterPosition()).getSenderName());
+                    intent.putExtra("messageBody",messageList.get(getAdapterPosition()).getMessageBody());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

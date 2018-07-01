@@ -13,13 +13,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
         if(requestCode==PERMISSION){
             if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
                 setupViewPager(mViewPager);
@@ -59,10 +53,6 @@ public class MainActivity extends AppCompatActivity {
             TabLayout tabLayout=findViewById(R.id.tabs);
             tabLayout.setupWithViewPager(mViewPager);
         }
-
-        /*TODO:1.check for sms permissions,contact permissions
-          2.Read all sms through content providers and display in recycler view
-        */
 
     }
 

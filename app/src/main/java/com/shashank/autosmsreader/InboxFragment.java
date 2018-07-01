@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,10 @@ public class InboxFragment extends Fragment{
     }
 
     public void readContacts(){
+
+        //TODO:DUPLICATE VALUES AND HOW TO EXACTLY USE HASHMAP
+        //TODO:WHAT IS NORMALIZED NUMBER AND +91 VS 0 VS NORMAL
+        //TODO:TO LOAD ALL MESSAGES IN BACKGROUND THREAD
         Cursor c=getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,null,null,ContactsContract.Contacts.DISPLAY_NAME+" ASC");
 
         while(c.moveToNext()){
@@ -58,9 +63,10 @@ public class InboxFragment extends Fragment{
             String contactName=c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
             String phoneNumber=c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
             Contacts.put(phoneNumber,contactName);
-
+           // Log.i(contactName,phoneNumber);
         }
         c.close();
+        //Log.i("Hashmap",Contacts.toString());
     }
 
     public void readMessages(){
@@ -87,11 +93,14 @@ public class InboxFragment extends Fragment{
     }
 
     public void showMessages(){
+        Log.i("This",messageList.get(0).senderName);
         for(Messages message:messageList){
             if(Contacts.containsKey(message.getSenderName())){
                 message.setSenderName(Contacts.get(message.getSenderName()));
             }
         }
+        Log.i("This",messageList.get(0).senderName);
+
         customAdapter.notifyDataSetChanged();
     }
 }
