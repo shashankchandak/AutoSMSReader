@@ -34,6 +34,8 @@ public class SmsReceiver extends BroadcastReceiver {
 
                 }
 
+    //            Log.i("Number",senderNumber);
+
                 Uri lookUpUri=Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI,Uri.encode(senderNumber));
                 Cursor c=context.getContentResolver().query(lookUpUri,new String[]{ContactsContract.Data.DISPLAY_NAME},null,null,null);
 
@@ -50,8 +52,8 @@ public class SmsReceiver extends BroadcastReceiver {
                     smsIntent.putExtra("messageBody",message);
                     context.startActivity(smsIntent);
 
-                //Log.i(senderNumber, message);
-                //Log.i(displayName,message);
+//                Log.i(senderNumber, message);
+  //              Log.i(displayName,message);
                 //Toast.makeText(context, message, Toast.LENGTH_LONG).show();
 
 

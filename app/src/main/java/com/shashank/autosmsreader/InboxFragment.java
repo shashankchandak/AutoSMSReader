@@ -1,8 +1,10 @@
 package com.shashank.autosmsreader;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -28,6 +30,7 @@ public class InboxFragment extends Fragment{
     private CustomAdapter customAdapter;
     HashMap<String,String> Contacts=new HashMap<>();
     Uri inboxURI;
+    private ProgressDialog dialog;
 
     @Nullable
     @Override
@@ -43,9 +46,10 @@ public class InboxFragment extends Fragment{
         customAdapter=new CustomAdapter(getActivity(),messageList);
         rv.setAdapter(customAdapter);
 
-        readContacts();
+       /* readContacts();
         readMessages();
-        showMessages();
+        showMessages();*/
+       new LoadInbox().execute();
 
         return view;
 
@@ -93,14 +97,38 @@ public class InboxFragment extends Fragment{
     }
 
     public void showMessages(){
-        Log.i("This",messageList.get(0).senderName);
         for(Messages message:messageList){
             if(Contacts.containsKey(message.getSenderName())){
                 message.setSenderName(Contacts.get(message.getSenderName()));
             }
         }
-        Log.i("This",messageList.get(0).senderName);
+        //customAdapter.notifyDataSetChanged();
+    }
 
-        customAdapter.notifyDataSetChanged();
+    class LoadInbox extends AsyncTask<Void,Void,Void>{
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog=new ProgressDialog(getContext());
+            dialog.setMessage("Reading messages...");
+            dialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            readContacts();
+            readMessages();
+            showMessages();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            //showMessages();
+            customAdapter.notifyDataSetChanged();
+            dialog.dismiss();
+        }
     }
 }
