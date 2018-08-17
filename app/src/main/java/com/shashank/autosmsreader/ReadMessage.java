@@ -2,8 +2,10 @@ package com.shashank.autosmsreader;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.view.View;
@@ -28,12 +30,13 @@ public class ReadMessage extends Activity implements TextToSpeech.OnInitListener
     String Sender="";
     String Message="";
 
+    SharedPreferences settings;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.message_popup);
 
-        //TODO 1.For numbers read it as individual digits
         //TODO 2.Add all feutres such as speechrate,pitch,selected contacts,selected timings,language
 
         senderName=findViewById(R.id.senderName);
@@ -117,6 +120,7 @@ public class ReadMessage extends Activity implements TextToSpeech.OnInitListener
             Toast.makeText(this,"Feature not supported in your device",Toast.LENGTH_LONG).show();
         }
         else{
+            setTTSParameters();
             String text="Message from: "+Sender+" Message is "+Message;
 
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -128,13 +132,65 @@ public class ReadMessage extends Activity implements TextToSpeech.OnInitListener
 
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         if(tts!=null){
             tts.stop();
             tts.shutdown();
+        }
+    }
+
+    public void setTTSParameters(){
+        settings= PreferenceManager.getDefaultSharedPreferences(this);
+
+        int language= Integer.parseInt(settings.getString("language","1"));
+        int pitch= Integer.parseInt(settings.getString("pitch","3"));
+        int speed=Integer.parseInt(settings.getString("speed","3"));
+
+        switch (language){
+            case 1:
+                tts.setLanguage(Locale.US);
+                break;
+            case 2:
+                tts.setLanguage(Locale.UK);
+                break;
+            case 3:
+                tts.setLanguage(Locale.GERMAN);
+        }
+
+        switch(pitch){
+            case 1:
+                tts.setPitch(0.1f);
+                break;
+            case 2:
+                tts.setPitch(0.5f);
+                break;
+            case 3:
+                tts.setPitch(1.2f);
+                break;
+            case 4:
+                tts.setPitch(1.7f);
+                break;
+            case 5:
+                tts.setPitch(2.0f);
+        }
+
+        switch(speed){
+            case 1:
+                tts.setSpeechRate(0.4f);
+                break;
+            case 2:
+                tts.setSpeechRate(0.7f);
+                break;
+            case 3:
+                tts.setSpeechRate(0.9f);
+                break;
+            case 4:
+                tts.setSpeechRate(1.3f);
+                break;
+            case 5:
+                tts.setSpeechRate(1.8f);
         }
     }
 }

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Text to Speech Settings">
+        <ListPreference
+            android:title="Language"
+            android:summary="Select language for TTS"
+            android:key="language"
+            android:defaultValue="1"
+            android:entries="@array/language"
+            android:entryValues="@array/language_val"/>
+        <ListPreference
+            android:title="Pitch"
+            android:summary="Set pitch for TTS"
+            android:key="pitch"
+            android:defaultValue="3"
+            android:entries="@array/pitch"
+            android:entryValues="@array/pitch_val"/>
+        <ListPreference
+            android:title="Speed"
+            android:summary="Set speed for TTS"
+            android:key="speed"
+            android:defaultValue="3"
+            android:entries="@array/speed"
+            android:entryValues="@array/speed_val"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="SMS Reader Settings">
+
+        <MultiSelectListPreference
+            android:key="filter_sender"
+            android:summary="Don't Read Message From Specified Sender."
+            android:title="Filter" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="silent"
+            android:title="Play in silent mode" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="bluetooth"
+            android:title="Always play when bluetooth connected" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="headphones"
+            android:title="Always play when headset is connected" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

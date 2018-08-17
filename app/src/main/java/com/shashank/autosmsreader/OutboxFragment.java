@@ -1,8 +1,10 @@
 package com.shashank.autosmsreader;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -26,6 +28,7 @@ public class OutboxFragment extends Fragment {
     private CustomAdapter customAdapter;
     HashMap<String,String> Contacts=new HashMap<>();
     Uri inboxURI;
+    private ProgressDialog dialog;
 
     @Nullable
     @Override
@@ -41,9 +44,11 @@ public class OutboxFragment extends Fragment {
         customAdapter=new CustomAdapter(getActivity(),messageList);
         rv.setAdapter(customAdapter);
 
-        readContacts();
-        readMessages();
-        showMessages();
+//        readContacts();
+//        readMessages();
+//        showMessages();
+
+        new LoadOutbox().execute();
 
         return view;
 
@@ -91,6 +96,32 @@ public class OutboxFragment extends Fragment {
                 message.setSenderName(Contacts.get(message.getSenderName()));
             }
         }
-        customAdapter.notifyDataSetChanged();
+      //  customAdapter.notifyDataSetChanged();
+    }
+
+    class LoadOutbox extends AsyncTask<Void,Void,Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog=new ProgressDialog(getContext());
+            dialog.setMessage("Reading messages...");
+            dialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            readContacts();
+            readMessages();
+            showMessages();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            customAdapter.notifyDataSetChanged();
+            dialog.dismiss();
+        }
     }
 }

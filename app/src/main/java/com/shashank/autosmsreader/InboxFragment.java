@@ -57,25 +57,21 @@ public class InboxFragment extends Fragment{
 
     public void readContacts(){
 
-        //TODO:DUPLICATE VALUES AND HOW TO EXACTLY USE HASHMAP
-        //TODO:WHAT IS NORMALIZED NUMBER AND +91 VS 0 VS NORMAL
-        //TODO:TO LOAD ALL MESSAGES IN BACKGROUND THREAD
         Cursor c=getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,null,null,ContactsContract.Contacts.DISPLAY_NAME+" ASC");
 
         while(c.moveToNext()){
 
             String contactName=c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-            String phoneNumber=c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            String phoneNumber=c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER));
             Contacts.put(phoneNumber,contactName);
            // Log.i(contactName,phoneNumber);
         }
         c.close();
-        //Log.i("Hashmap",Contacts.toString());
     }
 
     public void readMessages(){
-        inboxURI= Uri.parse("content://sms/inbox");
 
+        inboxURI= Uri.parse("content://sms/inbox");
         ContentResolver cr=getActivity().getContentResolver();
 
         Cursor c=cr.query(inboxURI,null,null,null,null);

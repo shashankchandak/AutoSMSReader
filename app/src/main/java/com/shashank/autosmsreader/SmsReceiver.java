@@ -3,9 +3,12 @@ package com.shashank.autosmsreader;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.Telephony;
 import android.telephony.SmsMessage;
@@ -34,8 +37,6 @@ public class SmsReceiver extends BroadcastReceiver {
 
                 }
 
-    //            Log.i("Number",senderNumber);
-
                 Uri lookUpUri=Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI,Uri.encode(senderNumber));
                 Cursor c=context.getContentResolver().query(lookUpUri,new String[]{ContactsContract.Data.DISPLAY_NAME},null,null,null);
 
@@ -46,18 +47,19 @@ public class SmsReceiver extends BroadcastReceiver {
                 else
                     displayName=senderNumber;
 
-                  Intent smsIntent=new Intent(context,ReadMessage.class);
-                    smsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    smsIntent.putExtra("senderName",displayName);
-                    smsIntent.putExtra("messageBody",message);
-                    context.startActivity(smsIntent);
+                Intent smsIntent=new Intent(context,ReadMessage.class);
+                smsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                smsIntent.putExtra("senderName",displayName);
+                smsIntent.putExtra("messageBody",message);
+                context.startActivity(smsIntent);
 
 //                Log.i(senderNumber, message);
   //              Log.i(displayName,message);
                 //Toast.makeText(context, message, Toast.LENGTH_LONG).show();
 
-
             }
         }
     }
+
 }
+
