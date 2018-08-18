@@ -27,11 +27,11 @@
         <activity
             android:name=".ReadMessage"
             android:excludeFromRecents="true"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar"
-            android:screenOrientation="portrait"></activity>
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar"></activity>
 
-        <receiver android:name=".SmsReceiver">
-            <intent-filter android:priority="1000">
+        <receiver android:name=".SmsReceiver" android:permission="android.permission.BROADCAST_SMS" android:exported="true"
+            android:enabled="true">
+            <intent-filter android:priority="999">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>

@@ -1,9 +1,13 @@
 package com.shashank.autosmsreader;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.preference.MultiSelectListPreference;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,9 +56,36 @@ public class Settings extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings);
             CharSequence[] entry = listItems.toArray(new CharSequence[listItems.size()]);
-            MultiSelectListPreference ml = (MultiSelectListPreference) findPreference("filter_sender");
-            ml.setEntries(entry);
-            ml.setEntryValues(entry);
+            MultiSelectListPreferenceFix contacts = (MultiSelectListPreferenceFix) findPreference("filter_sender");
+            contacts.setEntries(entry);
+            contacts.setEntryValues(entry);
+
+            Preference resetButton = findPreference("resetButton");
+            resetButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    //PreferenceManager.setDefaultValues(getActivity(), R.xml.settings, true);
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.clear();
+                    editor.commit();
+//                    Intent intent=getActivity().getIntent();
+//                    getActivity().finish();
+//                    startActivity(intent);
+                    //getActivity().recreate();
+                    Intent intent = getActivity().getIntent();
+                    getActivity().overridePendingTransition(0, 0);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    getActivity().finish();
+                    getActivity().overridePendingTransition(0, 0);
+                    startActivity(intent);
+
+
+                    return true;
+                }
+            });
+
+
         }
     }
 
@@ -68,4 +99,6 @@ public class Settings extends AppCompatActivity {
         }
         return  true;
     }
+
+
 }

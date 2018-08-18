@@ -26,25 +26,33 @@
 
     <PreferenceCategory android:title="SMS Reader Settings">
 
-        <MultiSelectListPreference
+        <com.shashank.autosmsreader.MultiSelectListPreferenceFix
             android:key="filter_sender"
-            android:summary="Don't Read Message From Specified Sender."
+            android:summary="Don't Read Messages From Selected Sender"
             android:title="Filter" />
 
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="silent"
-            android:title="Play in silent mode" />
-
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="bluetooth"
-            android:title="Always play when bluetooth connected" />
+            android:title="Play in silent mode"
+            android:summary="Also play in silent mode(By default it plays only in general mode)"/>
 
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="headphones"
-            android:title="Always play when headset is connected" />
+            android:key="headset"
+            android:title="Play only if headset connected"
+            android:summary="Will play only if earphones or bluetooth is connected."/>
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="shake"
+            android:title="Enable shake to stop"
+            android:summary="Enable shaking the device to stop reading"/>
+
+        <Preference
+            android:title="Reset"
+            android:key="resetButton"
+            android:summary="Reset all settings to default values"/>
 
     </PreferenceCategory>
 

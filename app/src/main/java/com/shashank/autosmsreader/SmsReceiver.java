@@ -7,10 +7,12 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.media.AudioManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.Telephony;
+import android.support.annotation.RequiresApi;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
@@ -47,11 +49,14 @@ public class SmsReceiver extends BroadcastReceiver {
                 else
                     displayName=senderNumber;
 
-                Intent smsIntent=new Intent(context,ReadMessage.class);
-                smsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                smsIntent.putExtra("senderName",displayName);
-                smsIntent.putExtra("messageBody",message);
-                context.startActivity(smsIntent);
+                if(new CheckSettings(context,displayName).read()) {
+
+                    Intent smsIntent = new Intent(context, ReadMessage.class);
+                    smsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    smsIntent.putExtra("senderName", displayName);
+                    smsIntent.putExtra("messageBody", message);
+                    context.startActivity(smsIntent);
+                }
 
 //                Log.i(senderNumber, message);
   //              Log.i(displayName,message);
