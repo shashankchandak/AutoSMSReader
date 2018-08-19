@@ -1,8 +1,11 @@
 package com.shashank.autosmsreader;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -22,6 +25,10 @@ public class ReadMessage extends Activity implements TextToSpeech.OnInitListener
     private TextView messageBody;
     private Button stopButton;
 
+    private SensorManager mSensorManager;
+    private Sensor mAccelerometer;
+    private ShakeDetector mShakeDetector;
+
     private TextToSpeech tts;
     int result;
 
@@ -37,11 +44,13 @@ public class ReadMessage extends Activity implements TextToSpeech.OnInitListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.message_popup);
 
+
         //TODO 2.Add all feutres such as speechrate,pitch,selected contacts,selected timings,language
 
         senderName=findViewById(R.id.senderName);
         messageBody=findViewById(R.id.messageBody);
         stopButton=findViewById(R.id.stopButton);
+        settings= PreferenceManager.getDefaultSharedPreferences(this);
 
         Intent intent=getIntent();
         Sender=intent.getStringExtra("senderName");
@@ -54,6 +63,16 @@ public class ReadMessage extends Activity implements TextToSpeech.OnInitListener
         checkTTS.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
         startActivityForResult(checkTTS,REQUEST_CODE);
 
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mShakeDetector = new ShakeDetector();
+        mShakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
+
+            @Override
+            public void onShake(int count) {
+                handleShakeEvent(count);
+            }
+        });
 
         stopButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,9 +136,16 @@ public class ReadMessage extends Activity implements TextToSpeech.OnInitListener
 
     public void TTS(){
         if(result== TextToSpeech.LANG_NOT_SUPPORTED||result==TextToSpeech.LANG_MISSING_DATA){
-            Toast.makeText(this,"Feature not supported in your device",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Language not available,Please download",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent();
+            intent.setAction("com.android.settings.TTS_SETTINGS");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            this.startActivity(intent);
         }
         else{
+            if(settings.getBoolean("shake",true))
+                mSensorManager.registerListener(mShakeDetector, mAccelerometer,	SensorManager.SENSOR_DELAY_UI);
+
             setTTSParameters();
             String text="Message from: "+Sender+" Message is "+Message;
 
@@ -135,14 +161,26 @@ public class ReadMessage extends Activity implements TextToSpeech.OnInitListener
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if(settings.getBoolean("shake",true))
+            mSensorManager.unregisterListener(mShakeDetector);
         if(tts!=null){
             tts.stop();
             tts.shutdown();
         }
     }
 
+    public void handleShakeEvent(int count){
+        if(count>=2){
+         //   Toast.makeText(getApplicationContext(),"Shake detected",Toast.LENGTH_LONG).show();
+            if(tts!=null){
+                tts.stop();
+            }
+            finish();
+        }
+    }
+
     public void setTTSParameters(){
-        settings= PreferenceManager.getDefaultSharedPreferences(this);
+       // settings= PreferenceManager.getDefaultSharedPreferences(this);
 
         int language= Integer.parseInt(settings.getString("language","1"));
         int pitch= Integer.parseInt(settings.getString("pitch","3"));

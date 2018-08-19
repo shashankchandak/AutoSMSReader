@@ -29,7 +29,12 @@
         <com.shashank.autosmsreader.MultiSelectListPreferenceFix
             android:key="filter_sender"
             android:summary="Don't Read Messages From Selected Sender"
-            android:title="Filter" />
+            android:title="Filter Sender" />
+
+        <Preference
+            android:title="Filter time"
+            android:key="filter_time"
+            android:summary="Don't read messages for the following time interval"/>
 
         <CheckBoxPreference
             android:defaultValue="false"

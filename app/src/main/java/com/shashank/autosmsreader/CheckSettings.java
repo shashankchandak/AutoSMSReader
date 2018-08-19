@@ -2,10 +2,13 @@ package com.shashank.autosmsreader;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.widget.Toast;
@@ -35,76 +38,54 @@ public class CheckSettings {
             sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             Set<String> selected = sharedPrefs.getStringSet("filter_sender", null);
             if(selected!=null) {
-                Log.i("Debug","Entered non null list");
                 ArrayList<String> selectedContacts = new ArrayList<>(selected);
 
-                if (selectedContacts.contains(senderName)) {
-                    Log.i("Debug","Contact blocked");
+                boolean isUnknown=false;
+                Uri lookUpUri=Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI,Uri.encode(senderName));
+                Cursor c=context.getContentResolver().query(lookUpUri,new String[]{ContactsContract.Data.DISPLAY_NAME},null,null,null);
+                if(c==null)
+                    isUnknown=true;
+
+                if (selectedContacts.contains(senderName)||(selected.contains("Unknown numbers")&&isUnknown))
                     return false;
-
-                }
                 else{
-                    Log.i("Debug","Contact not blocked");
-                    boolean onlyHeadSet=sharedPrefs.getBoolean("headset",false);
-
-                    if(onlyHeadSet){
-                        if(!isHeadSetOn())
-                            return false;
-                        return true;
-                    }
-                    else{
-                        if(isHeadSetOn())
-                            return true;
-                        else {
-                            boolean playOnSilent = sharedPrefs.getBoolean("silent", false);
-                            boolean isSilent = false;
-
-                            if (manager.getRingerMode() == AudioManager.RINGER_MODE_SILENT || manager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE)
-                                isSilent = true;
-
-                            if (isSilent) {
-                                if (playOnSilent == false)
-                                    return false;
-                                return true;
-                            }
-                            return true;
-                        }
-                    }
+                    return otherCheck();
                 }
             }
             else{
-                boolean onlyHeadSet=sharedPrefs.getBoolean("headset",false);
-
-                if(onlyHeadSet){
-                       if(!isHeadSetOn())
-                           return false;
-                       return true;
-                }
-                else{
-                    if(isHeadSetOn())
-                        return true;
-                    else {
-                        boolean playOnSilent = sharedPrefs.getBoolean("silent", false);
-                        boolean isSilent = false;
-
-                        if (manager.getRingerMode() == AudioManager.RINGER_MODE_SILENT || manager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE)
-                            isSilent = true;
-
-                        if (isSilent) {
-                            if (playOnSilent == false)
-                                return false;
-                            return true;
-                        }
-
-                        return true;
-                    }
-                }
+                return otherCheck();
             }
 
         }
     }
 
+    public boolean otherCheck(){
+        boolean onlyHeadSet=sharedPrefs.getBoolean("headset",false);
 
+        if(onlyHeadSet){
+            if(!isHeadSetOn())
+                return false;
+            return true;
+        }
+        else{
+            if(isHeadSetOn())
+                return true;
+            else {
+                boolean playOnSilent = sharedPrefs.getBoolean("silent", false);
+                boolean isSilent = false;
+
+                if (manager.getRingerMode() == AudioManager.RINGER_MODE_SILENT || manager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE)
+                    isSilent = true;
+
+                if (isSilent) {
+                    if (playOnSilent == false)
+                        return false;
+                    return true;
+                }
+                return true;
+            }
+        }
+    }
 
 
     public boolean isHeadSetOn(){
