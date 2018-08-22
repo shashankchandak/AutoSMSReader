@@ -45,12 +45,7 @@ public class InboxFragment extends Fragment{
 
         customAdapter=new CustomAdapter(getActivity(),messageList);
         rv.setAdapter(customAdapter);
-
-       /* readContacts();
-        readMessages();
-        showMessages();*/
-       new LoadInbox().execute();
-
+        new LoadInbox().execute();
         return view;
 
     }
@@ -62,7 +57,7 @@ public class InboxFragment extends Fragment{
         while(c.moveToNext()){
 
             String contactName=c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-            String phoneNumber=c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER));
+            String phoneNumber=c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
             Contacts.put(phoneNumber,contactName);
            // Log.i(contactName,phoneNumber);
         }
@@ -107,7 +102,7 @@ public class InboxFragment extends Fragment{
         protected void onPreExecute() {
             super.onPreExecute();
             dialog=new ProgressDialog(getContext());
-            dialog.setMessage("Reading messages...");
+            dialog.setMessage("Fetching messages...");
             dialog.show();
         }
 

@@ -9,8 +9,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
-import android.support.annotation.RequiresApi;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -45,7 +43,6 @@ public class CheckSettings {
                 return false;
             }
             else {
-                Log.i("time not","came here");
                 sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
                 Set<String> selected = sharedPrefs.getStringSet("filter_sender", null);
                 if (selected != null) {
@@ -125,7 +122,6 @@ public class CheckSettings {
     }
 
     public boolean isTimeFiltered(){
-        Log.i("time","came here");
         SharedPreferences shref;
         shref = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
 

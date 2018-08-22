@@ -105,7 +105,7 @@ public class OutboxFragment extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             dialog=new ProgressDialog(getContext());
-            dialog.setMessage("Reading messages...");
+            dialog.setMessage("Fetching messages...");
             dialog.show();
         }
 

@@ -36,14 +36,10 @@ public class TimeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time);
 
-
         setTitle("Time interval's");
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         shref = getApplicationContext().getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
-
-
         Gson gson = new Gson();
         String response=shref.getString("times" , "");
         timeIntervals = gson.fromJson(response,
@@ -63,7 +59,6 @@ public class TimeActivity extends AppCompatActivity {
                 currentTime = Calendar.getInstance();
                 int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
                 int currentMinute = currentTime.get(Calendar.MINUTE);
-
                 timePicker1 = new TimePickerDialog(TimeActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
@@ -96,8 +91,6 @@ public class TimeActivity extends AppCompatActivity {
                 timeIntervals.add(timeInterval);
                 timeAdpater.notifyDataSetChanged();
 
-
-
                 SharedPreferences.Editor editor;
                 shref = getApplicationContext().getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
                 Gson gson = new Gson();
@@ -116,7 +109,6 @@ public class TimeActivity extends AppCompatActivity {
 
 
     }
-
 
     String giveTimeInterval(int hour,int minute){
         String interval;
