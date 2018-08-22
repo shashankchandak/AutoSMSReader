@@ -51,9 +51,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public ViewHolder(View itemView) {
             super(itemView);
 
-            senderNameTextView=itemView.findViewById(R.id.senderNameTextView);
-            messageBodyTextView=itemView.findViewById(R.id.messageBodyTextView);
-            dateTextView=itemView.findViewById(R.id.dateTextView);
+            senderNameTextView=(TextView) itemView.findViewById(R.id.senderNameTextView);
+            messageBodyTextView=(TextView) itemView.findViewById(R.id.messageBodyTextView);
+            dateTextView=(TextView) itemView.findViewById(R.id.dateTextView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

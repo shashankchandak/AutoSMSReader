@@ -2,8 +2,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.shashank.autosmsreader.MainActivity">
+
+    <item
+        android:id="@+id/switchId"
+        android:title=""
+        android:actionLayout="@layout/switch_layout"
+        app:showAsAction="always" />
+
+
     <item android:id="@+id/settings"
         android:title="Settings"
         android:icon="@drawable/settings"
         app:showAsAction="always"></item>
+
+
 </menu>

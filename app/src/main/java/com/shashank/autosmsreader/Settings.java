@@ -24,6 +24,8 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setTitle("Settings");
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         listItems = new ArrayList<>();
@@ -80,6 +82,18 @@ public class Settings extends AppCompatActivity {
                     getActivity().overridePendingTransition(0, 0);
                     startActivity(intent);
 
+
+                    return true;
+                }
+            });
+
+            Preference filter_time=findPreference("filter_time");
+            filter_time.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+
+                    Intent intent=new Intent(getActivity(),TimeActivity.class);
+                    startActivity(intent);
 
                     return true;
                 }

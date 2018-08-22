@@ -15,12 +15,15 @@ import android.provider.Telephony;
 import android.support.annotation.RequiresApi;
 import android.telephony.SmsMessage;
 import android.util.Log;
+import android.widget.Toast;
 
 public class SmsReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
         if(intent.getAction().equals(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)) {
+
+           // Toast.makeText(context,"Broadcast recieved",Toast.LENGTH_LONG).show();
             String displayName="";
             String senderNumber="";
             String message="";
@@ -49,7 +52,9 @@ public class SmsReceiver extends BroadcastReceiver {
                 else
                     displayName=senderNumber;
 
-                if(new CheckSettings(context,displayName).read()) {
+                SharedPreferences shref = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+
+                if(new CheckSettings(context,displayName).read()&&shref.getBoolean("main",true)) {
 
                     Intent smsIntent = new Intent(context, ReadMessage.class);
                     smsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

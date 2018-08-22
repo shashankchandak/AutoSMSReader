@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.Locale;
 import java.util.Queue;
 
@@ -47,9 +49,9 @@ public class ReadMessage extends Activity implements TextToSpeech.OnInitListener
 
         //TODO 2.Add all feutres such as speechrate,pitch,selected contacts,selected timings,language
 
-        senderName=findViewById(R.id.senderName);
-        messageBody=findViewById(R.id.messageBody);
-        stopButton=findViewById(R.id.stopButton);
+        senderName=(TextView) findViewById(R.id.senderName);
+        messageBody=(TextView) findViewById(R.id.messageBody);
+        stopButton=(Button) findViewById(R.id.stopButton);
         settings= PreferenceManager.getDefaultSharedPreferences(this);
 
         Intent intent=getIntent();

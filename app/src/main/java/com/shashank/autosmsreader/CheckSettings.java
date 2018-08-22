@@ -13,7 +13,12 @@ import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 import java.util.Set;
 
 public class CheckSettings {
@@ -35,25 +40,32 @@ public class CheckSettings {
         if(manager.getMode()==AudioManager.MODE_IN_CALL)
             return false;
         else{
-            sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            Set<String> selected = sharedPrefs.getStringSet("filter_sender", null);
-            if(selected!=null) {
-                ArrayList<String> selectedContacts = new ArrayList<>(selected);
 
-                boolean isUnknown=false;
-                Uri lookUpUri=Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI,Uri.encode(senderName));
-                Cursor c=context.getContentResolver().query(lookUpUri,new String[]{ContactsContract.Data.DISPLAY_NAME},null,null,null);
-                if(c==null)
-                    isUnknown=true;
+            if(isTimeFiltered()){
+                return false;
+            }
+            else {
+                Log.i("time not","came here");
+                sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+                Set<String> selected = sharedPrefs.getStringSet("filter_sender", null);
+                if (selected != null) {
+                    ArrayList<String> selectedContacts = new ArrayList<>(selected);
 
-                if (selectedContacts.contains(senderName)||(selected.contains("Unknown numbers")&&isUnknown))
-                    return false;
-                else{
+                    boolean isUnknown = false;
+                    Uri lookUpUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(senderName));
+                    Cursor c = context.getContentResolver().query(lookUpUri, new String[]{ContactsContract.Data.DISPLAY_NAME}, null, null, null);
+                    if (c == null)
+                        isUnknown = true;
+
+                    if (selectedContacts.contains(senderName) || (selected.contains("Unknown numbers") && isUnknown))
+                        return false;
+                    else {
+                        return otherCheck();
+                    }
+                }
+                else {
                     return otherCheck();
                 }
-            }
-            else{
-                return otherCheck();
             }
 
         }
@@ -107,6 +119,42 @@ public class CheckSettings {
                 return true;
 
                 }
+            }
+        }
+        return false;
+    }
+
+    public boolean isTimeFiltered(){
+        Log.i("time","came here");
+        SharedPreferences shref;
+        shref = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+
+        Gson gson = new Gson();
+        String response=shref.getString("times" , "");
+        if(response.equals(""))
+            return false;
+
+        ArrayList<TimeInterval> timeIntervals= gson.fromJson(response,
+                new TypeToken<List<TimeInterval>>(){}.getType());
+
+        Calendar currentTime = Calendar.getInstance();
+        int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
+        int currentMinute = currentTime.get(Calendar.MINUTE);
+
+        for(TimeInterval timeInterval : timeIntervals){
+            if(currentHour>timeInterval.getFromHour()&&currentHour<timeInterval.getToHour())
+                return true;
+            if(currentHour==timeInterval.getFromHour()&&currentHour==timeInterval.getToHour()){
+                if(currentMinute>timeInterval.getFromMinute()&&currentMinute<timeInterval.getToMinute())
+                    return true;
+            }
+            if(currentHour==timeInterval.getFromHour()){
+                if(currentMinute>timeInterval.getFromMinute())
+                    return true;
+            }
+            if(currentHour==timeInterval.getToHour()){
+                if(currentMinute<timeInterval.getToMinute())
+                    return true;
             }
         }
         return false;

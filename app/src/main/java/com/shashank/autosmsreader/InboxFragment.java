@@ -38,7 +38,7 @@ public class InboxFragment extends Fragment{
 
         View view=inflater.inflate(R.layout.messages,container,false);
 
-        rv=view.findViewById(R.id.rv);
+        rv=(RecyclerView) view.findViewById(R.id.rv);
         messageList=new ArrayList<>();
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
