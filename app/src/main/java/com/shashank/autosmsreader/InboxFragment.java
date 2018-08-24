@@ -102,7 +102,7 @@ public class InboxFragment extends Fragment{
         protected void onPreExecute() {
             super.onPreExecute();
             dialog=new ProgressDialog(getContext());
-            dialog.setMessage("Fetching messages...");
+            dialog.setMessage(getString(R.string.fetch));
             dialog.show();
         }
 

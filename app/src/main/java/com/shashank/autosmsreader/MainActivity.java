@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 tabLayout.setupWithViewPager(mViewPager);
             }
             else{
-                Toast.makeText(this,"Give permissions to read sms",Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.permission_error,Toast.LENGTH_LONG).show();
                 finish();
             }
         }
@@ -69,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
                 editor.commit();
 
                 if (isChecked) {
-                    Toast.makeText(getApplication(), "All incoming messages will be read loudly", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplication(), getString(R.string.switch_on_toast), Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplication(), "Incoming sms reading disabled", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplication(), getString(R.string.switch_off_toast), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -121,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager){
-        sectionsPageAdapter.addFragment(new InboxFragment(),"INBOX");
-        sectionsPageAdapter.addFragment(new OutboxFragment(),"OUTBOX");
+        sectionsPageAdapter.addFragment(new InboxFragment(),getString(R.string.inbox_tab));
+        sectionsPageAdapter.addFragment(new OutboxFragment(),getString(R.string.outbox_tab));
         viewPager.setAdapter(sectionsPageAdapter);
     }
 }

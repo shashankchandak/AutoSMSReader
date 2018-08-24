@@ -54,7 +54,7 @@ public class CheckSettings {
                     if (c == null)
                         isUnknown = true;
 
-                    if (selectedContacts.contains(senderName) || (selected.contains("Unknown numbers") && isUnknown))
+                    if (selectedContacts.contains(senderName) || (selected.contains(context.getString(R.string.unknown_number)) && isUnknown))
                         return false;
                     else {
                         return otherCheck();

@@ -36,7 +36,7 @@ public class TimeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time);
 
-        setTitle("Time interval's");
+        setTitle(getString(R.string.time_activity_title));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         shref = getApplicationContext().getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
@@ -69,7 +69,7 @@ public class TimeActivity extends AppCompatActivity {
 
                     }
                 }, currentHour, currentMinute, false);
-                timePicker1.setTitle("From: ");
+                timePicker1.setTitle(getString(R.string.from_time));
                 timePicker1.show();
 
             }
@@ -104,7 +104,7 @@ public class TimeActivity extends AppCompatActivity {
 
             }
         }, fromHour, fromMinute, false);
-        timePicker2.setTitle("To: ");
+        timePicker2.setTitle(getString(R.string.to_time));
         timePicker2.show();
 
 
@@ -114,7 +114,7 @@ public class TimeActivity extends AppCompatActivity {
         String interval;
 
         if(hour>=12){
-            amPm=" PM";
+            amPm=getString(R.string.pm);
 
             if(hour>12)
                 hour=hour-12;
@@ -122,7 +122,7 @@ public class TimeActivity extends AppCompatActivity {
         else {
             if(hour==0)
                 hour=hour+12;
-            amPm=" AM";
+            amPm=getString(R.string.am);
         }
          interval=String.format("%02d:%02d",hour,minute)+amPm;
         return  interval;

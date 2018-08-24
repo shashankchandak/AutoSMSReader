@@ -53,7 +53,7 @@
                 android:textColor="#000000"
                 android:layout_marginTop="3dp"
                 android:textSize="20sp"
-                android:text="Message: "/>
+                android:text="@string/message_textView"/>
 
             <TextView
                 android:id="@+id/messageBody"
@@ -74,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorAccent"
-                android:text="Stop"
+                android:text="@string/stop_button"
                 android:textColor="#ffffff"
                 android:textSize="18sp"
                 android:textAllCaps="false"/>

@@ -52,7 +52,7 @@ public class ReadMessage extends Activity implements TextToSpeech.OnInitListener
         Intent intent=getIntent();
         Sender=intent.getStringExtra("senderName");
         Message=intent.getStringExtra("messageBody");
-        senderName.setText("From: "+Sender);
+        senderName.setText(getString(R.string.from_message)+Sender);
         messageBody.setText(Message);
 
 
@@ -127,13 +127,13 @@ public class ReadMessage extends Activity implements TextToSpeech.OnInitListener
             TTS();
         }
         else{
-            Toast.makeText(this,"Feature not supported in your device",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.tts_error,Toast.LENGTH_LONG).show();
         }
     }
 
     public void TTS(){
         if(result== TextToSpeech.LANG_NOT_SUPPORTED||result==TextToSpeech.LANG_MISSING_DATA){
-            Toast.makeText(this,"Language not available,Please download",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.language_error,Toast.LENGTH_LONG).show();
             Intent intent = new Intent();
             intent.setAction("com.android.settings.TTS_SETTINGS");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -144,7 +144,7 @@ public class ReadMessage extends Activity implements TextToSpeech.OnInitListener
                 mSensorManager.registerListener(mShakeDetector, mAccelerometer,	SensorManager.SENSOR_DELAY_UI);
 
             setTTSParameters();
-            String text="Message from: "+Sender+" Message is "+Message;
+            String text=getString(R.string.tts_message_from)+Sender+getString(R.string.tts_message_is)+Message;
 
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                 tts.speak(text,TextToSpeech.QUEUE_ADD,null,TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID);

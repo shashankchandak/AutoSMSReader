@@ -24,7 +24,7 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setTitle("Settings");
+        setTitle(getString(R.string.settings_actvity_title));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -38,7 +38,7 @@ public class Settings extends AppCompatActivity {
             Collections.sort(listItems);
         } catch (Exception e) {
         }
-        listItems.add(0, "Unknown numbers");
+        listItems.add(0, getString(R.string.unknown_number));
 
         getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment(listItems)).commit();
     }
