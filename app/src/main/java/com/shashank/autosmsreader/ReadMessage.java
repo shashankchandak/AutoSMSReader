@@ -191,6 +191,13 @@ public class ReadMessage extends Activity implements TextToSpeech.OnInitListener
                 break;
             case 3:
                 tts.setLanguage(Locale.GERMAN);
+                break;
+            case 4:
+                tts.setLanguage(Locale.FRENCH);
+                break;
+            case 5:
+                tts.setLanguage(Locale.JAPANESE);
+                break;
         }
 
         switch(pitch){
