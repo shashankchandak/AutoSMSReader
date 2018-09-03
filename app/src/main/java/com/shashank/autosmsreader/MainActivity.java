@@ -1,10 +1,12 @@
 package com.shashank.autosmsreader;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
@@ -82,7 +84,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
-        startActivity(new Intent(MainActivity.this, Settings.class));
+        switch(item.getItemId()) {
+            case R.id.settings:
+                startActivity(new Intent(MainActivity.this, Settings.class));
+                break;
+            case R.id.rateUs:
+                try{
+                    startActivity(new Intent("android.intent.action.VIEW", Uri.parse("market://details?id="+getPackageName())));
+                }
+                catch (ActivityNotFoundException e){
+                    startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps/details?id="+getPackageName())));
+                }
+                break;
+
+        }
+
         return true;
     }
 

@@ -15,5 +15,8 @@
         android:icon="@drawable/settings"
         app:showAsAction="always"></item>
 
+    <item android:id="@+id/rateUs"
+        android:title="Rate us !"/>
+
 
 </menu>
