@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="language">
+        <item>English(US)</item>
+        <item>English(UK)</item>
+        <item>German</item>
+        <item>French</item>
+        <item>Japanese</item>
+    </string-array>
+    <string-array name="language_val">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="pitch">
+        <item>最低</item>
+        <item>低い</item>
+        <item>正常</item>
+        <item>高い</item>
+        <item>最高</item>
+    </string-array>
+    <string-array name="pitch_val">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="speed">
+        <item>非常に遅い </item>
+        <item>スロー</item>
+        <item>正常</item>
+        <item>速い</item>
+        <item>とても早い </item>
+    </string-array>
+    <string-array name="speed_val">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+</resources>

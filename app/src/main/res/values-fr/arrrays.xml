@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="language">
+        <item>English(US)</item>
+        <item>English(UK)</item>
+        <item>German</item>
+        <item>French</item>
+        <item>Japanese</item>
+    </string-array>
+    <string-array name="language_val">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="pitch">
+        <item>le plus bas</item>
+        <item>faible</item>
+        <item>Ordinaire</item>
+        <item>haute</item>
+        <item>le plus élevé</item>
+    </string-array>
+    <string-array name="pitch_val">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="speed">
+        <item>très lent </item>
+        <item>lent</item>
+        <item>Ordinaire</item>
+        <item>vite</item>
+        <item>très vite</item>
+    </string-array>
+    <string-array name="speed_val">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+</resources>
