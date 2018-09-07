@@ -17,11 +17,11 @@ import java.util.List;
 
 public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
 
-    Context context;
-    List<TimeInterval> timeIntervals;
+    private Context context;
+    private ArrayList<TimeInterval> timeIntervals;
     SharedPreferences shref;
 
-    public TimeAdapter(Context context,List<TimeInterval> timeIntervals){
+    public TimeAdapter(Context context, ArrayList<TimeInterval> timeIntervals){
         this.context=context;
         this.timeIntervals=timeIntervals;
     }

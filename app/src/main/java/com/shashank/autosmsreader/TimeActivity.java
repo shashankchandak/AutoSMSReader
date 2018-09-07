@@ -17,7 +17,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class TimeActivity extends AppCompatActivity {
 
@@ -28,7 +27,7 @@ public class TimeActivity extends AppCompatActivity {
     int fromHour,fromMinute,toHour,toMinute;
     ArrayList<TimeInterval> timeIntervals;
     RecyclerView rv;
-    TimeAdapter timeAdpater;
+    TimeAdapter timeAdapter;
     SharedPreferences shref;
 
     @Override
@@ -38,18 +37,19 @@ public class TimeActivity extends AppCompatActivity {
 
         setTitle(getString(R.string.time_activity_title));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        timeIntervals=new ArrayList<>();
 
         shref = getApplicationContext().getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String response=shref.getString("times" , "");
-        timeIntervals = gson.fromJson(response,
-                new TypeToken<List<TimeInterval>>(){}.getType());
+        if(!response.isEmpty())
+            timeIntervals = gson.fromJson(response, new TypeToken<ArrayList<TimeInterval>>(){}.getType());
 
-        rv= (RecyclerView) findViewById(R.id.rv);
+        rv= (RecyclerView) findViewById(R.id.timerv);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        timeAdpater=new TimeAdapter(this,timeIntervals);
-        rv.setAdapter(timeAdpater);
+        timeAdapter =new TimeAdapter(this,timeIntervals);
+        rv.setAdapter(timeAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +89,7 @@ public class TimeActivity extends AppCompatActivity {
                 String timeinterval=from+" - " +to;
                 TimeInterval timeInterval=new TimeInterval(fromHour,fromMinute,toHour,toMinute,timeinterval);
                 timeIntervals.add(timeInterval);
-                timeAdpater.notifyDataSetChanged();
+                timeAdapter.notifyDataSetChanged();
 
                 SharedPreferences.Editor editor;
                 shref = getApplicationContext().getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
@@ -134,7 +134,7 @@ public class TimeActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
+               finish();
         }
         return  true;
     }
