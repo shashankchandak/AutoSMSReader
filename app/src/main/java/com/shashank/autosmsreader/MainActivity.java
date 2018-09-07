@@ -96,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps/details?id="+getPackageName())));
                 }
                 break;
+            case R.id.help:
+                startActivity(new Intent(MainActivity.this,HelpActivity.class));
 
         }
 

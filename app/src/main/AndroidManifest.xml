@@ -44,7 +44,8 @@
         </receiver>
 
         <activity android:name=".Settings" />
-        <activity android:name=".TimeActivity"></activity>
+        <activity android:name=".TimeActivity" />
+        <activity android:name=".HelpActivity"></activity>
     </application>
 
 </manifest>
