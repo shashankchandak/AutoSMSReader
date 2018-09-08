@@ -45,4 +45,26 @@
         <item>5</item>
     </string-array>
 
+    <string-array name="brand">
+        <item>Oneplus</item>
+        <item>Xiaomi</item>
+        <item>Oppo</item>
+        <item>Vivo</item>
+        <item>Samsung with android 6</item>
+        <item>Samsung with android 7</item>
+        <item>Samsung with adnroid 8</item>
+        <item>Lenovo</item>
+    </string-array>
+
+    <string-array name="brand_val">
+        <item>1. Go to your device settings and tap ‘Battery’.\n\n2. Tap ‘Battery Optimization’ from the top right menu icon.\n\n3. Select all apps and disable ‘Auto SMS Reader’.</item>
+        <item>1. Go to your device settings and tap ‘Additional Settings’.\n\n2. Tap ‘Battery &amp; Performance’, ‘Manage Apps Battery Usage’, ‘Choose Apps’.\n\n3. Tap on ‘Auto SMS Reader’ and choose ‘No Restrictions’.\n\n4. Go to Settings, Permissions, Autostart (tap here). Turn on Autostart for Auto SMS Reader.\n\n5. Go to your Power settings policy and allow Auto SMS Reader to wake up your device</item>
+        <item>1. Go to your phone’s ‘Settings’, ‘Advanced Settings’, ‘Battery Manager’, ‘Protected Apps’.\n\n2. Find ‘Auto SMS Reader’, and ‘Protect’/’Whitelist’ it.\n\n3. In your phone’s ‘Settings’, tap ‘Apps’, tap ‘Advanced’, tap ‘Ignore Battery Optimizations’.\n\n4. Find ‘Auto SMS Reader’ and choose to ‘Ignore’ it.</item>
+        <item>1. Please go to Settings, tap “More settings”, tap “Applications”, tap “Autostart”, then turn on the switch for “Auto SMS Reader”.</item>
+        <item>1. Go to your Smart Manager app and tap on ‘Battery’.\n\n2. Under ‘App Power Saving’, tap ‘Details’.\n\n3. Tap on ‘Auto SMS Reader’ and tap ‘Disable’.</item>
+        <item>1. Go to your device settings and tap ‘Device Maintenance’, then tap on ‘Battery’.\n\n2. Scroll down and tap ‘Unmonitored apps’, then add Auto SMS Reader to this list.</item>
+        <item>1. Open your phone’s Settings app, tap “Apps”.\n\n2. Tap the three-dot icon in the top right corner, then tap “Special access”.\n\n3. Tap “Optimize battery usage”, then tap “Apps not optimized”.</item>
+        <item>1. Go into you phone’s Settings and tap “Apps”.\n\n2. Find the app named “Background app management”.\n\n3. Click on it and then select “Disable”.</item>
+    </string-array>
+
 </resources>
