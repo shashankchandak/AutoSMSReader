@@ -45,4 +45,12 @@
     <string name="unknown_number">Nombre inconnu</string>
     <string name="pm">PM</string>
     <string name="am">AM</string>
+
+    <string name="help_and_support">Support d\'aide</string>
+    <string name="rate_us">Évaluez nous!</string>
+    <string name="contact_us">Contactez nous</string>
+    <string name="email_subject">Retour automatique au lecteur SMS</string>
+    <string name="email_intent">Envoyer des commentaires</string>
+    <string name="help_title">Si vos messages entrants ne sont pas lus, suivez les étapes ci-dessous en fonction de votre mobile.</string>
+
 </resources>

@@ -45,4 +45,12 @@
     <string name="unknown_number">Unbekannte Nummern</string>
     <string name="pm">PM</string>
     <string name="am">AM</string>
+
+    <string name="help_and_support">Hilfe Unterstützung</string>
+    <string name="rate_us">Bewerten Sie uns!</string>
+    <string name="contact_us">Kontaktiere uns</string>
+    <string name="email_subject">Auto SMS Leser Rückmeldung</string>
+    <string name="email_intent">Feedback abschicken</string>
+    <string name="help_title">Wenn Ihre eingehenden Nachrichten nicht gelesen werden, befolgen Sie die unten angegebenen Schritte.</string>
+
 </resources>

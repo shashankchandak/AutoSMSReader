@@ -51,5 +51,6 @@
     <string name="contact_us">Contact us</string>
     <string name="email_subject">Auto SMS reader Feedback</string>
     <string name="email_intent">Send Feedback</string>
+    <string name="help_title">If your incoming messages are not read then according to your mobile follow the steps given below.</string>
 
 </resources>

@@ -46,4 +46,12 @@
     <string name="unknown_number">未知数</string>
     <string name="pm">PM</string>
     <string name="am">AM</string>
+
+    <string name="help_and_support">ヘルプサポート</string>
+    <string name="rate_us">私たちを評価してください!</string>
+    <string name="contact_us">お問い合わせ</string>
+    <string name="email_subject">自動SMSリーダーのフィードバック</string>
+    <string name="email_intent">フィードバックを送信</string>
+    <string name="help_title">あなたの着信メッセージが読まれていない場合、あなたの携帯電話に応じて以下の手順に従ってください。.</string>
+
 </resources>

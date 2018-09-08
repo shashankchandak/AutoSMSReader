@@ -15,7 +15,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:padding="8dp"
-        android:text="If your incoming messages are not read then according to your mobile follow the steps given below."
+        android:text="@string/help_title"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -3,6 +3,7 @@ package com.shashank.autosmsreader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,6 +28,9 @@ public class HelpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         listView= (ListView) findViewById(R.id.listview);
         brands=new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.brand)));
@@ -57,5 +61,15 @@ public class HelpActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+        }
+        return  true;
     }
 }

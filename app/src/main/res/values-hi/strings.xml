@@ -45,4 +45,12 @@
     <string name="unknown_number">अज्ञात संख्याएं</string>
     <string name="pm">PM</string>
     <string name="am">AM</string>
+
+    <string name="help_and_support">Hilfe Unterstützung</string>
+    <string name="rate_us">Rate us !</string>
+    <string name="contact_us">Contact us</string>
+    <string name="email_subject">Auto SMS reader Feedback</string>
+    <string name="email_intent">Send Feedback</string>
+    <string name="help_title">If your incoming messages are not read then according to your mobile follow the steps given below.</string>
+
 </resources>
