@@ -15,11 +15,13 @@
         android:icon="@drawable/settings"
         app:showAsAction="always"></item>
 
-    <item android:id="@+id/rateUs"
-        android:title="Rate us !"/>
-
     <item android:id="@+id/help"
         android:title="@string/help_and_support"/>
 
+    <item android:id="@+id/rateUs"
+        android:title="@string/rate_us"/>
+
+    <item android:id="@+id/contactUs"
+        android:title="@string/contact_us"/>
 
 </menu>

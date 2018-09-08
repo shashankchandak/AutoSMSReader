@@ -98,6 +98,17 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.help:
                 startActivity(new Intent(MainActivity.this,HelpActivity.class));
+                break;
+            case R.id.contactUs:
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto: chandak.shashank16@gmail.com"));
+                //intent.putExtra(Intent.EXTRA_EMAIL, "chandak.shashank16@gmail.com");
+                intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(Intent.createChooser(intent,getString(R.string.email_intent)));
+
+                }
+                break;
 
         }
 

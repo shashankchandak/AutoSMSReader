@@ -199,4 +199,8 @@ If you have a Vivo device:
 3. Please go to “Imanager”, “Power manager”, “Excessive background battery usage” and allow Auto SMS Reader to continue running when the background power consumption is high.
 
 4. Please go to Settings, tap “More settings”, tap “Applications”, tap “Autostart”, then turn on the switch for “Auto SMS Reader”.</string>
+    <string name="rate_us">Rate us !</string>
+    <string name="contact_us">Contact us</string>
+    <string name="email_subject">Auto SMS reader Feedback</string>
+    <string name="email_intent">Send Feedback</string>
 </resources>
