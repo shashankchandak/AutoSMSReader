@@ -41,8 +41,6 @@ public class HelpActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-               // Toast.makeText(HelpActivity.this,brands.get(position),Toast.LENGTH_LONG).show();
                 dialogBuilder=new AlertDialog.Builder(HelpActivity.this);
                 View v =getLayoutInflater().inflate(R.layout.help,null);
                 dialogBuilder.setView(v);

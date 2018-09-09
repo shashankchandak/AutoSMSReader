@@ -52,7 +52,7 @@
         <item>Vivo</item>
         <item>Samsung with android 6</item>
         <item>Samsung with android 7</item>
-        <item>Samsung with adnroid 8</item>
+        <item>Samsung with android 8</item>
         <item>Lenovo</item>
     </string-array>
 
@@ -63,7 +63,7 @@
         <item>1. Please go to Settings, tap “More settings”, tap “Applications”, tap “Autostart”, then turn on the switch for “Auto SMS Reader”.</item>
         <item>1. Go to your Smart Manager app and tap on ‘Battery’.\n\n2. Under ‘App Power Saving’, tap ‘Details’.\n\n3. Tap on ‘Auto SMS Reader’ and tap ‘Disable’.</item>
         <item>1. Go to your device settings and tap ‘Device Maintenance’, then tap on ‘Battery’.\n\n2. Scroll down and tap ‘Unmonitored apps’, then add Auto SMS Reader to this list.</item>
-        <item>1. Open your phone’s Settings app, tap “Apps”.\n\n2. Tap the three-dot icon in the top right corner, then tap “Special access”.\n\n3. Tap “Optimize battery usage”, then tap “Apps not optimized”.</item>
+        <item>1. Open your phone’s Settings app, tap “Apps”.\n\n2. Tap the three-dot icon in the top right corner, then tap “Special access”.\n\n3. Tap “Optimize battery usage”, then tap “Apps not optimized”.\n\n4. Select “All apps”, find Auto SMS Reader and disable it here.</item>
         <item>1. Go into you phone’s Settings and tap “Apps”.\n\n2. Find the app named “Background app management”.\n\n3. Click on it and then select “Disable”.</item>
     </string-array>
 
