@@ -190,48 +190,55 @@ public class ReadMessage extends Activity implements TextToSpeech.OnInitListener
                 tts.setLanguage(Locale.UK);
                 break;
             case 3:
-                tts.setLanguage(Locale.GERMAN);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    tts.setLanguage(Locale.forLanguageTag("hin"));
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"This language is not supported by your phone",Toast.LENGTH_LONG).show();
+                }
                 break;
             case 4:
-                tts.setLanguage(Locale.FRENCH);
+                tts.setLanguage(Locale.GERMAN);
                 break;
             case 5:
-                tts.setLanguage(Locale.JAPANESE);
+                tts.setLanguage(Locale.FRENCH);
                 break;
+            case 6:
+                tts.setLanguage(Locale.JAPANESE);
         }
 
         switch(pitch){
             case 1:
-                tts.setPitch(0.1f);
+                tts.setPitch(0.8f);
                 break;
             case 2:
-                tts.setPitch(0.5f);
+                tts.setPitch(0.9f);
                 break;
             case 3:
-                tts.setPitch(1.2f);
+                tts.setPitch(1.0f);
                 break;
             case 4:
-                tts.setPitch(1.7f);
+                tts.setPitch(1.1f);
                 break;
             case 5:
-                tts.setPitch(2.0f);
+                tts.setPitch(1.2f);
         }
 
         switch(speed){
             case 1:
-                tts.setSpeechRate(0.4f);
+                tts.setSpeechRate(0.6f);
                 break;
             case 2:
                 tts.setSpeechRate(0.7f);
                 break;
             case 3:
-                tts.setSpeechRate(0.9f);
+                tts.setSpeechRate(0.8f);
                 break;
             case 4:
-                tts.setSpeechRate(1.3f);
+                tts.setSpeechRate(1.0f);
                 break;
             case 5:
-                tts.setSpeechRate(1.8f);
+                tts.setSpeechRate(1.2f);
         }
     }
 }
