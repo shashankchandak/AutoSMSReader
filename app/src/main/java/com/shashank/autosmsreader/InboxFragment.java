@@ -59,7 +59,6 @@ public class InboxFragment extends Fragment{
             String contactName=c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
             String phoneNumber=c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
             Contacts.put(phoneNumber,contactName);
-           // Log.i(contactName,phoneNumber);
         }
         c.close();
     }
@@ -93,7 +92,6 @@ public class InboxFragment extends Fragment{
                 message.setSenderName(Contacts.get(message.getSenderName()));
             }
         }
-        //customAdapter.notifyDataSetChanged();
     }
 
     class LoadInbox extends AsyncTask<Void,Void,Void>{
@@ -117,7 +115,6 @@ public class InboxFragment extends Fragment{
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            //showMessages();
             customAdapter.notifyDataSetChanged();
             dialog.dismiss();
         }
