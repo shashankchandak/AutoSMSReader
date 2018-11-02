@@ -232,7 +232,7 @@ public class ReadMessage extends Activity implements TextToSpeech.OnInitListener
                 tts.setSpeechRate(0.7f);
                 break;
             case 3:
-                tts.setSpeechRate(0.8f);
+                tts.setSpeechRate(0.85f);
                 break;
             case 4:
                 tts.setSpeechRate(1.0f);

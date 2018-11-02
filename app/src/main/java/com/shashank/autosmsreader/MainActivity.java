@@ -109,6 +109,13 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 break;
+            case R.id.privacyPolicy:
+                Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://sites.google.com/view/autosmsreaderprivacypolicy/home"));
+                if (webIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(webIntent);
+                }
+                break;
 
         }
 

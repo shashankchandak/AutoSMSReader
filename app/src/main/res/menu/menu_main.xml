@@ -23,5 +23,7 @@
 
     <item android:id="@+id/contactUs"
         android:title="@string/contact_us"/>
+    <item android:id="@+id/privacyPolicy"
+        android:title="Privacy policy"/>
 
 </menu>

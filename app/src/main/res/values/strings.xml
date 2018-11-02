@@ -39,8 +39,8 @@
     <string name="from_message">From:</string>
     <string name="tts_error">Feature not supported in your device</string>
     <string name="language_error">Language not available,Please download</string>
-    <string name="tts_message_from">Message from:</string>
-    <string name="tts_message_is">Message is</string>
+    <string name="tts_message_from">Message from: </string>
+    <string name="tts_message_is">Message  is </string>
     <string name="fetch">Fetching messages....</string>
     <string name="unknown_number">Unknown numbers</string>
     <string name="pm">PM</string>
