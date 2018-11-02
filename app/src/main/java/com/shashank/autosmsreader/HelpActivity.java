@@ -32,7 +32,7 @@ public class HelpActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        listView= (ListView) findViewById(R.id.listview);
+        listView= findViewById(R.id.listview);
         brands=new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.brand)));
         brand_val=new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.brand_val)));
         ArrayAdapter<String> arrayAdapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,brands);

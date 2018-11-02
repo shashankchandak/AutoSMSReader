@@ -51,5 +51,7 @@
     <string name="email_subject">Auto SMS reader Feedback</string>
     <string name="email_intent">Send Feedback</string>
     <string name="help_title">If your incoming messages are not read then according to your mobile follow the steps given below.</string>
-
+    <string name="privacy">This app requires Message and Contact permissions as the core functionality of the app is to read the incoming messages along with sender name.
+    We do not store or share this information anywhere. Provide the permissions to have a seamless experience.
+    </string>
 </resources>

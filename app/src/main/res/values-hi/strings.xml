@@ -51,5 +51,5 @@
     <string name="email_subject">Auto SMS reader Feedback</string>
     <string name="email_intent">Send Feedback</string>
     <string name="help_title">If your incoming messages are not read then according to your mobile follow the steps given below.</string>
-
+    <string name="privacy">इस ऐप को संदेश और संपर्क अनुमतियों की आवश्यकता है क्योंकि ऐप की मूल कार्यक्षमता आने वाले संदेशों को प्रेषक नाम के साथ पढ़ना है। हम इस जानकारी को कहीं भी स्टोर या साझा नहीं करते हैं। निर्बाध अनुभव रखने के लिए अनुमतियां प्रदान करें।</string>
 </resources>

@@ -51,5 +51,5 @@
     <string name="email_subject">Retour automatique au lecteur SMS</string>
     <string name="email_intent">Envoyer des commentaires</string>
     <string name="help_title">Si vos messages entrants ne sont pas lus, suivez les étapes ci-dessous en fonction de votre mobile.</string>
-
+    <string name="privacy">Cette application nécessite des autorisations de message et de contact car la fonctionnalité principale de l\'application consiste à lire les messages entrants avec le nom de l\'expéditeur. Nous ne stockons ni ne partageons ces informations nulle part. Fournissez les autorisations nécessaires pour une expérience transparente.</string>
 </resources>

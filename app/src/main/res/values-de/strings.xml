@@ -51,5 +51,5 @@
     <string name="email_subject">Auto SMS Leser Rückmeldung</string>
     <string name="email_intent">Feedback abschicken</string>
     <string name="help_title">Wenn Ihre eingehenden Nachrichten nicht gelesen werden, befolgen Sie die unten angegebenen Schritte.</string>
-
+    <string name="privacy">Diese App erfordert Nachrichten- und Kontaktberechtigungen, da die Kernfunktion der App darin besteht, die eingehenden Nachrichten zusammen mit dem Absendernamen zu lesen. Wir speichern oder teilen diese Informationen nirgendwo. Geben Sie die Berechtigungen für eine nahtlose Erfahrung an.</string>
 </resources>
