@@ -1,6 +1,7 @@
 # AutoSMSReader
 An android application that allows users to read all incoming messages loudly (Text to Speech).
 
+App is doing very well on the playstore with about 10K downloads.
 Playstore link: [(https://play.google.com/store/apps/details?id=com.shashank.autosmsreader)]
 
 ## Purpose of the app:
